@@ -1,3 +1,4 @@
+version: '3.9'
 services:
   mysqldb:
     container_name: mysqlcontainerforapp
@@ -17,7 +18,7 @@ services:
       SERICE_NAME: mysqldb
     networks:
       - apinetwork
-      
+
   apiapplication:
     container_name: apiapplicationcontainer
     build: ./
@@ -29,7 +30,7 @@ services:
       - 8081
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/serverdb
-      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_USERNAME: "root"
       SERVICE_TAGS: prod
       SERICE_NAME: springapi
     depends_on:
@@ -39,6 +40,3 @@ services:
 networks:
   apinetwork:
     driver: bridge
-
-
-

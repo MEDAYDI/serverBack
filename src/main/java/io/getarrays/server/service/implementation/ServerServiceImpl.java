@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 import static io.getarrays.server.enumeration.Status.SERVER_DOWN;
@@ -52,7 +53,7 @@ public class ServerServiceImpl implements ServerService {
     }
 
     @Override
-    public Collection<Server> list(int limit) {
+    public List<Server> list(int limit) {
         log.info("Fetching all servers");
         return serverRepo.findAll(of(0, limit)).toList();
     }

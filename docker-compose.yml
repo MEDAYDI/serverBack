@@ -21,7 +21,7 @@ services:
   apiapplication:
     container_name: apiapplicationcontainer
     build: .
-    image: apiapplication:v1
+    image: mohamedaydi/serverback:v1
     restart: unless-stopped
     ports:
       - 8081:8081

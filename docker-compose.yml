@@ -1,6 +1,4 @@
-networks:
-  apinetwork:
-    driver: bridge
+version: '3.9'
 services:
   mysqldb:
     container_name: mysqlcontainerforapp
@@ -20,7 +18,7 @@ services:
       SERICE_NAME: mysqldb
     networks:
       - apinetwork
-
+      
   apiapplication:
     container_name: apiapplicationcontainer
     build: ./
@@ -39,5 +37,9 @@ services:
       - mysqldb
     networks:
       - apinetwork
+networks:
+  apinetwork:
+    driver: bridge
+
 
 

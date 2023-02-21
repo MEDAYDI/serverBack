@@ -1,3 +1,6 @@
+networks:
+  apinetwork:
+    driver: bridge
 services:
   mysqldb:
     container_name: mysqlcontainerforapp
@@ -20,7 +23,7 @@ services:
 
   apiapplication:
     container_name: apiapplicationcontainer
-    build: .
+    build: ./
     image: mohamedaydi/serverback:v1
     restart: unless-stopped
     ports:
@@ -37,6 +40,4 @@ services:
     networks:
       - apinetwork
 
-networks:
-  apinetwork:
-    driver: bridge
+

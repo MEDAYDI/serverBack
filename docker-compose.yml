@@ -1,42 +1,49 @@
-version: '3.3'
+version: "3.9"
 services:
   mysqldb:
     container_name: mysqlcontainerforapp
     image: mysql:8.0
-    restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     volumes:
       - $HOME/database:/var/lib/mysql
     ports:
       - 3306:3306
-    expose:
-      - 3306
     environment:
-      MYSQL_DATABASE: serverdb
-      MYSQL_USER: root
-      SERVICE_TAGS: prod
-      SERICE_NAME: mysqldb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=serverdb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=root
+
     networks:
       - apinetwork
 
   apiapplication:
     container_name: apiapplicationcontainer
-    build: ./
+    build: .
     image: mohamedaydi/serverback:v1
-    restart: unless-stopped
     ports:
       - 8081:8081
-    expose:
-      - 8081
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/serverdb
-      SPRING_DATASOURCE_USERNAME: "root"
-      SERVICE_TAGS: prod
-      SERICE_NAME: springapi
     depends_on:
       - mysqldb
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/serverdb?createDatabaseIfNotExist=true
     networks:
       - apinetwork
+
+  phpmyadmin:
+    depends_on:
+      - mysqldb
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports :
+      - 8083:80
+    environment:
+      - PMA_HOST=mysqldb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - apinetwork
+
 networks:
   apinetwork:
     driver: bridge

@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/serverdb?createDatabaseIfNotExist=true
-    username: root
+    username: admin
     password: root
     driver-class-name : com.mysql.cj.jdbc.Driver
   jpa:

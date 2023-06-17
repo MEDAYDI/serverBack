@@ -3,6 +3,7 @@ package io.getarrays.server.service.implementation;
 import io.getarrays.server.model.Server;
 import io.getarrays.server.repo.ServerRepo;
 import io.getarrays.server.service.ServerService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,7 @@ import static io.getarrays.server.enumeration.Status.SERVER_UP;
 import static java.lang.Boolean.TRUE;
 import static org.springframework.data.domain.PageRequest.of;
 
-/**
- * @author Get Arrays (https://www.getarrays.io/)
- * @version 1.0
- * @since 9/4/2021
- */
+
 
 @RequiredArgsConstructor
 @Service
@@ -53,9 +50,9 @@ public class ServerServiceImpl implements ServerService {
     }
 
     @Override
-    public List<Server> list(int limit) {
+    public List<Server> list() {
         log.info("Fetching all servers");
-        return serverRepo.findAll(of(0, limit)).toList();
+        return serverRepo.findAll();
     }
 
     @Override

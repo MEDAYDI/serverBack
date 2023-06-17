@@ -4,6 +4,7 @@ import io.getarrays.server.model.Server;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Get Arrays (https://www.getarrays.io/)
@@ -13,7 +14,7 @@ import java.util.Collection;
 public interface ServerService {
     Server create(Server server);
     Server ping(String ipAddress) throws IOException;
-    Collection<Server> list(int limit);
+    List<Server> list();
     Server get(Long id);
     Server update(Server server);
     Boolean delete(Long id);

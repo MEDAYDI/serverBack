@@ -22,11 +22,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
-/**
- * @author Get Arrays (https://www.getarrays.io/)
- * @version 1.0
- * @since 9/4/2021
- */
+
 
 @RestController
 @RequestMapping("/server")
@@ -38,7 +34,7 @@ public class ServerResource {
     public ResponseEntity<Response> getServers() throws InterruptedException {
         TimeUnit.SECONDS.sleep(3);
         Map<String, List<Server>> data = new HashMap<>();
-        data.put("servers", serverService.list(30));
+        data.put("servers", serverService.list());
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())

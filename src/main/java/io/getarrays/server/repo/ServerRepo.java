@@ -2,12 +2,9 @@ package io.getarrays.server.repo;
 
 import io.getarrays.server.model.Server;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author Get Arrays (https://www.getarrays.io/)
- * @version 1.0
- * @since 9/4/2021
- */
+@Repository
 public interface ServerRepo extends JpaRepository<Server, Long> {
     Server findByIpAddress(String ipAddress);
 }
